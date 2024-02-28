@@ -72,8 +72,8 @@ export const POST = createRoute(async (c) => {
       {
         role: 'user',
         content: `\
-        There are ${contents.length} arrays here. Let's play a game to guess which array has the closest contents to ${content}.\
-        What is the closest content to ${content} in the ${descriptions}?\
+        There are ${contents.length} arrays here.\
+        What is the closest content to ${content} in the [${descriptions}]?\
         `,
       },
     ],
