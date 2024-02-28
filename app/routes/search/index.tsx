@@ -3,7 +3,7 @@ import { css } from 'hono/css';
 import type { FC } from 'hono/jsx';
 import { createRoute } from 'honox/factory';
 
-import BaseLayout from '../components/layout';
+import BaseLayout from '../../components/layout';
 
 type Data = {
   text?: string;
@@ -51,7 +51,7 @@ export const POST = createRoute(async (c) => {
   const ai = new Ai(c.env.AI);
 
   // @ts-ignore
-  const posts = import.meta.glob<{ frontmatter: Meta }>('posts/*.mdx', {
+  const posts = import.meta.glob<{ frontmatter: Meta }>('../posts/*.mdx', {
     eager: true,
   });
   const contents = Object.entries(posts).map(([id, module]) => {
