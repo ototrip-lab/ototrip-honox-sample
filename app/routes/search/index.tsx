@@ -67,14 +67,34 @@ export const POST = createRoute(async (c) => {
     .map((item) => `${item.title}: ${item.description}`)
     .join(', ');
 
+  const preAnswer: LlamaAnswer = await ai.run('@cf/meta/llama-2-7b-chat-int8', {
+    messages: [
+      {
+        role: 'user',
+        content: `\
+        There are ${contents.length} arrays here. Let's play a game to guess which array has the closest contents to ${content}.\
+        What is the closest content to ${content} in the ${descriptions}?\
+        `,
+      },
+    ],
+  });
   const answer: LlamaAnswer = await ai.run('@cf/meta/llama-2-7b-chat-int8', {
     messages: [
       {
         role: 'user',
         content: `\
-        There are ${contents.length} arrays here.\
-        What is the closest content to ${content} in the [${descriptions}]?\
+        There are ${contents.length} arrays here. Let's play a game to guess which array has the closest contents to ${content}.\
+        What is the closest content to ${content} in the ${descriptions}?\
         `,
+      },
+      {
+        role: 'assistant',
+        content: preAnswer.response,
+      },
+      {
+        role: 'user',
+        content:
+          'Output only what you think is the best answer in the original text and title.',
       },
     ],
   });
