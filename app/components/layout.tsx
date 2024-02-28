@@ -55,6 +55,9 @@ export default function Layout({
           <a href='/' class={styles.headerLink}>
             Home
           </a>
+          <a href='/search' class={styles.headerLink}>
+            Search
+          </a>
         </div>
       </header>
       <section class={styles.section}>{children}</section>

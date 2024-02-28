@@ -3,12 +3,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --mode client && vite build",
+    "build": "vite build",
     "preview": "wrangler pages dev ./dist",
     "deploy": "$npm_execpath run build && wrangler pages deploy ./dist"
   },
   "private": true,
   "dependencies": {
+    "@cloudflare/ai": "^1.0.52",
     "@mdx-js/rollup": "^3.0.1",
     "hono": "^4.0.8",
     "honox": "^0.1.4",
