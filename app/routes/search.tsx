@@ -51,7 +51,7 @@ export const POST = createRoute(async (c) => {
   const ai = new Ai(c.env.AI);
 
   // @ts-ignore
-  const posts = import.meta.glob<{ frontmatter: Meta }>('../posts/*.mdx', {
+  const posts = import.meta.glob<{ frontmatter: Meta }>('./posts/*.mdx', {
     eager: true,
   });
   const contents = Object.entries(posts).map(([id, module]) => {
